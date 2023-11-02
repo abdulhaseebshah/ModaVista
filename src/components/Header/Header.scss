@@ -1,0 +1,76 @@
+@import "../../index.scss";
+header {
+  background-color: #fff;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #999;
+  height: 60px;
+
+  @include medium-screen{
+    height: 55px;
+  }
+
+  .toggleMenu {
+    display: block;
+    font-size: 18px;
+    @include medium-screen {
+      display: none;
+    }
+  }
+  .leftMenu {
+    // position: relative;
+    display: flex;
+    align-items: center;
+
+    h2 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      @include medium-screen {
+        position: relative;
+        left: 0%;
+        transform: translateX(0%);
+        font-size: 22px;
+        font-weight: 500;
+      }
+
+    }
+  }
+
+  .navLinks {
+    gap: 1rem;
+    margin-left: 1.4rem;
+    a {
+      text-transform: uppercase;
+      position: relative;
+      font-size: 13px;
+      &::after {
+        content: "";
+        position: absolute;
+        height: 1px;
+        width: 0%;
+        background-color: #111;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: 0.4s;
+      }
+      &:hover::after {
+        width: 100%;
+      }
+
+      #bagIcon {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .navLinks.leftNav {
+    display: none;
+    @include medium-screen {
+      display: flex;
+    }
+  }
+}
