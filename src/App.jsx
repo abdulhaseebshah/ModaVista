@@ -1,13 +1,14 @@
 import React from "react";
-import "./App.scss";
-import Header from "./components/Header/Header";
-import Hero from "./components/Hero/Hero";
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./Pages/Home";
 const App = () => {
   return (
-    <React.Fragment>
-      <Header />
-      <Hero />
-    </React.Fragment>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

@@ -5,9 +5,12 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  color: #111;
+  color: #000;
 }
-
+::selection{
+  background-color: #111;
+  color: #fff;
+}
 body a {
   text-decoration: none;
 }
