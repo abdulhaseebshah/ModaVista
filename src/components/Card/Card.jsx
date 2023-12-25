@@ -1,21 +1,34 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import "./Card.css";
-import img1 from "../../assets/img/01.jpg";
-import img2 from "../../assets/img/02.jpg";
-const Card = () => {
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+const Card = ({ mainThumb, backThumb, productName, price,handleNavigate }) => {
   const [isShow, setIsShow] = useState(true);
+  const mainImg = useRef()
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      const tl = gsap.timeline()
+      tl.from(mainImg.current, {
+        scale: 1.2,
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
   return (
     <div
       className="productCard"
-      onMouseEnter={() => setIsShow(true)}
-      onMouseLeave={() => setIsShow(false)}
+      onMouseEnter={() => setIsShow(false)}
+      onMouseLeave={() => setIsShow(true)}
+      onClick={handleNavigate}
     >
       <div className="imgBx">
-        <img src={img2} alt="" />
-        <img src={img1} alt="" className={isShow ? "hidden" : ""} />
+        <img src={mainThumb} ref={mainImg} alt="" />
+        <img src={backThumb} alt="" className={isShow ? "hidden" : ""} />
       </div>
-      <span className="title">Lorem ipsum dolor sit.</span>
-      <span className="price">200</span>
+      <span className="title">{productName}</span>
+      <span className="price">${price}</span>
     </div>
   );
 };
